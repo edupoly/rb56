@@ -1,7 +1,12 @@
+import Banner from "./Banner";
+import Courses from "./Courses";
+import Navbar from "./Navbar";
 function App() {
   return (
     <div>
-      <h1>Praveen</h1>
+      <Navbar></Navbar>
+      <Banner></Banner>
+      <Courses></Courses>
     </div>
   );
 }
