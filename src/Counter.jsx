@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-function Counter() {
-  var [c, fn] = useState(0);
+function Counter(props) {
+  console.log(props);
+  var [c, fn] = useState(props.v);
   function inc() {
-    fn(c + 1);
+    fn(c + props.s);
   } //action
   function dec() {
     // c=c-1
-    fn(c - 1);
+    fn(c - props.s);
   }
   return (
     <div className="border border-5 border-info p-2 m-2">
@@ -26,6 +27,13 @@ function Counter() {
         }}
       >
         Dec
+      </button>
+      <button
+        onClick={() => {
+          props.abc(890);
+        }}
+      >
+        Parent lo unna abcfunc call chey
       </button>
     </div>
   );
