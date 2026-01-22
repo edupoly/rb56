@@ -1,4 +1,4 @@
-import Counter from "./Counter";
+import Counter from "./components/Counter/Counter";
 function App() {
   return (
     <div className="border border-5 border-danger p-2 m-2">
