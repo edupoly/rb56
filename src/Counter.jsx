@@ -1,28 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
+import { decAction, incAction, resetAction } from "./store/actions";
 
 function Counter(props) {
-  console.log(props);
+  console.log("Counter Loaded:", props);
   return (
     <div className="border border-2 p-2 m-2 border-primary">
-      <h1>Counter:{props.counterReducer.count}</h1>
+      <h1>Counter:{props.count}</h1>
       <button
         onClick={() => {
-          props.dispatch({ type: "INC" });
+          props.incFn();
         }}
       >
         Increment
       </button>
       <button
         onClick={() => {
-          props.dispatch({ type: "DEC" });
+          props.decFn();
         }}
       >
         Decrement
       </button>
       <button
         onClick={() => {
-          props.dispatch({ type: "RESET" });
+          props.resetFn();
         }}
       >
         Reset
@@ -30,7 +31,20 @@ function Counter(props) {
     </div>
   );
 }
-
-export default connect((store) => {
-  return store;
-})(Counter);
+function mapStateToProps(state) {
+  return state.counterReducer;
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    incFn: () => {
+      dispatch(incAction());
+    },
+    decFn: () => {
+      dispatch(decAction());
+    },
+    resetFn: () => {
+      dispatch(resetAction());
+    },
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
