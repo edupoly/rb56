@@ -35,3 +35,6 @@ function Counter() {
 }
 
 export default Counter;
+// data layer
+// service layer
+// presentation layer
