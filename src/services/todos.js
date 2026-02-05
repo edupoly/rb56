@@ -5,15 +5,40 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const todosApi = createApi({
   reducerPath: "todosApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com/todos",
+    baseUrl: "http://localhost:3000/todos",
   }),
   endpoints: (builder) => ({
     getAllTodos: builder.query({
       query: () => ``,
+    }),
+    addTodo: builder.mutation({
+      query: (todo) => {
+        return {
+          url: "/",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(todo),
+        };
+      },
+    }),
+    deleteTodo: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/${id}`,
+          method: "DELETE",
+        };
+      },
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllTodosQuery } = todosApi;
+export const {
+  useGetAllTodosQuery,
+  useLazyGetAllTodosQuery,
+  useAddTodoMutation,
+  useDeleteTodoMutation,
+} = todosApi;
